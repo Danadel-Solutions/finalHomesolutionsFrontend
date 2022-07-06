@@ -9,11 +9,11 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
-import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Loader from "../UI/Loader";
 import NumberFormat from "react-number-format";
+import axiosInstance from "../api/config";
 
 const PropertyDetailScreen = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const PropertyDetailScreen = () => {
     setLoading(true);
     const fetchProperty = async () => {
       try {
-        const { data } = await axios.get(`/api/properties/${id}`);
+        const { data } = await axiosInstance.get(`/api/properties/${id}`);
         console.log(data);
         setProperty(data);
       } catch (e) {

@@ -28,9 +28,11 @@ export const register = (userObj) => async (dispatch) => {
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
   } catch (e) {
-    dispatch({
-      type: USER_REGISTER_FAIL,
-      payload: {...e}
-    });
+    if (e.response) {
+      dispatch({
+        type: USER_REGISTER_FAIL,
+        payload: e.response.data.non_field_errors[0],
+      });
+    }
   }
 };

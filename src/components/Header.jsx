@@ -2,8 +2,11 @@ import React from "react";
 import { Container, Navbar, Nav, Row, Button } from "react-bootstrap";
 import logo from "../assets/logo.svg";
 import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+
   return (
     <header>
       <Navbar className="navigation py-3" collapseOnSelect expand="lg">
@@ -24,7 +27,7 @@ const Header = () => {
               <Nav.Link href="#link">Shortlet</Nav.Link>
               <Nav.Link href="#link">Blog</Nav.Link>
               <Nav.Link href="#link">Agents</Nav.Link>
-              <LinkContainer to={"/login"}>
+              <LinkContainer to={userInfo ? "/add-property" : "/login"}>
                 <Nav.Link className="btn post-btn" href="#link">
                   Post for FREE
                 </Nav.Link>

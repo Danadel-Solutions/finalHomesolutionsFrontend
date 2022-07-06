@@ -1,21 +1,39 @@
-import React, { useState, useEffect } from "react";
-import { Form, Col, Button, Row, Container } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Col, Button, Row, Container } from "react-bootstrap";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userActions";
+import { object, string, ref } from "yup";
+import { Formik, Form, useField, ErrorMessage } from "formik";
+import Input from "../UI/Input";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const LoginValidation = object().shape({
+    email: string()
+      .required("Valid Email Required")
+      .email("Valid Email Required"),
+    password: string()
+      .min(8, "Password must be at least 8 character long")
+      .required("Required"),
+  });
   const dispatch = useDispatch();
-  const loggedInUserInfo = useSelector((state) => state.userLogin.userInfo);
+  const userLoginState = useSelector((state) => state.userLogin);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login(email, password));
-    // console.log(loggedInUserInfo);
+  const handleSubmit = (values) => {
+    dispatch(login(values.email, values.password));
+    if (userLoginState.userInfo) {
+      navigate("/dashboard", { replace: true });
+    } else {
+      return;
+    }
   };
+  useEffect(() => {
+    if (userLoginState.userInfo) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="accounts-background">
@@ -28,40 +46,44 @@ const Login = () => {
         <Row className="justify-content-center align-content-center">
           <Col sm={10} md={8}>
             <h5>Login</h5>
-            <Form onSubmit={handleSubmit} className="bg-white rounded p-5">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="text-green">Email</Form.Label>
-                <Form.Control
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                />
-              </Form.Group>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              onSubmit={handleSubmit}
+              validationSchema={LoginValidation}
+              // validationSchema={null}
+            >
+              {() => {
+                return (
+                  <Form className="bg-white rounded p-5">
+                    <Input type="email" name="email" label="Email" />
+                    <Input type="password" name="password" label="Password" />
+                    {userLoginState.error && (
+                      <p className="text-danger">{userLoginState.error}</p>
+                    )}
+                    <Button
+                      disabled={userLoginState.loading}
+                      className="w-100 my-4"
+                      variant="primary"
+                      type="submit"
+                    >
+                      {userLoginState.loading ? "Please wait" : "Submit"}
+                    </Button>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Keep me logged in" />
-              </Form.Group>
-
-              <Button className="w-100" variant="primary" type="submit">
-                Login
-              </Button>
-              <p className="text-sm-center text-md-end">
-                Forgot your password?
-              </p>
-              <p className="text-center">
-                <Link className="text-decoration-none" to={"/signup"}>
-                  No account? Register
-                </Link>
-              </p>
-            </Form>
+                    <p className="text-sm-center text-md-end">
+                      Forgot your password?
+                    </p>
+                    <p className="text-center">
+                      <Link className="text-decoration-none" to={"/signup"}>
+                        No account? Register
+                      </Link>
+                    </p>
+                  </Form>
+                );
+              }}
+            </Formik>
           </Col>
         </Row>
       </Container>

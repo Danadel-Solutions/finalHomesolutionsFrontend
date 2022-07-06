@@ -3,12 +3,12 @@ import {
   PROPERTY_LIST_REQUEST,
   PROPERTY_LIST_SUCCESS,
 } from "../constants/propertyConstants";
-import axios from "axios";
+import axiosInstance from "../api/config";
 
 export const listProperties = () => async (dispatch) => {
   try {
     dispatch({ type: PROPERTY_LIST_REQUEST });
-    const response = await axios.get("/api/properties");
+    const response = await axiosInstance.get("/api/properties");
     const data = await response.data;
     dispatch({
       type: PROPERTY_LIST_SUCCESS,

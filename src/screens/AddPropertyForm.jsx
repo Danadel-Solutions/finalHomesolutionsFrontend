@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const AddPropertyForm = () => {
-  return (
-    <div>AddPropertyForm</div>
-  )
-}
+  return <div>AddPropertyForm</div>;
+};
 
-export default AddPropertyForm
+export default AddPropertyForm;
