@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;706&display=swap");
+* {
+  font-family: "Inter", sans-serif;
+}
+p > i {
+  margin-right: 10px;
+  transform: scale(1.3);
+  color: rgba(47, 61, 70, 1);
+}
+.card {
+  border: none !important;
+}
+.price {
+  color: rgba(244, 117, 0, 1);
+  font-weight: 700;
+}
+body {
+  background: wheat;
+}
+.navbar {
+  min-height: 60px;
+  background: rgba(244, 117, 0, 1);
+}
+.logo > img {
+  max-width: 220px;
+}
+
+header a {
+  color: white !important;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+.post-btn {
+  background: linear-gradient(90deg, #268082 0%, #005051 100%) !important;
+}
+.nav {
+  padding: 20px 0 !important;
+}
+.banner {
+  background-color: #2f3d46 !important;
+  background-image: url(./assets/Lagos-City.svg) !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  /* height: 75vh; */
+}
+
+.banner-content {
+  background: rgba(0, 80, 81, 0.6);
+}
+.login-form > p {
+  justify-self: flex-end;
+}
+.op > div:hover {
+  background: blue;
+}
+.accounts-background {
+  background-image: url(./assets/Lagos-City2.jpg) !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0 20px;
+}
+.radio-button {
+  margin: 0 4px;
+}
+.btn-check:checked + label {
+  color: black !important;
+  background: white !important;
+}
+@media (max-width: 768px) {
+  .banner-content > form {
+    width: 98%;
+  }
+}
+.banner-content .radios {
+  display: flex;
+  justify-content: center;
+}
+.radios > input {
+  opacity: 0;
+}
+.radios {
+  width: 100%;
+}
+.radios > label {
+  background: red;
+
+  width: 15%;
+  text-align: center;
+}
+.radios > input:checked + label {
+  background: white;
+}
+.search-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: white;
+  width: 85%;
+}
+.banner-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+/* @media (max-width: 768px) {
+  .form-group label {
+    font-size: 12px;
+  }
+} */
+@media (max-width: 1000px) {
+  .companies {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .companies > div {
+    border: none;
+    box-shadow: none !important;
+  }
+  .topic-companies {
+    text-align: center;
+  }
+}
+.companies > div {
+  width: 20%;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+.latest-title {
+  color: rgba(0, 80, 81, 1) !important;
+}
+.topic {
+  color: #005051;
+}
+.footer-top-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+@media (max-width: 768px) {
+  .footer-top-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+.search-info {
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+.search-info > input {
+  display: block;
+  width: 70%;
+}
+.footer {
+  background: rgba(0, 80, 81, 1);
+  margin-top: 50px;
+  font-weight: 400;
+  padding-bottom: 80px;
+}
+.footer-top {
+  color: white;
+  background: rgba(244, 117, 0, 1);
+}
+.footer .footer-button {
+  background: rgba(0, 80, 81, 1) !important;
+  margin-left: 22px;
+  border: none;
+}
+.footer-bottom {
+  background: rgba(0, 80, 81, 1) !important;
+  color: rgba(255, 255, 255, 1);
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+.card {
+  border-radius: 16px !important;
+}
+.card img {
+  border-radius: 16px !important;
+}
+.footer-bottom a {
+  display: block;
+  cursor: pointer;
+  width: fit-content;
+}
+.social-icon {
+  margin-right: 15px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.product-detail-image {
+  width: 100%;
+  height: 50%;
+}
