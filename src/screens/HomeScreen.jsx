@@ -28,7 +28,6 @@ const HomeScreen = () => {
       {/* <FeaturedProjects propertyList={propertyList} /> */}
       <LatestListed propertyList={propertyList} />
       <FromBlog />
-      <Footer />
     </div>
   );
 };

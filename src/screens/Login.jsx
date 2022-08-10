@@ -19,21 +19,18 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const userLoginState = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLoginState;
   const navigate = useNavigate();
-
+  // const redirect = location.search ? location.search.split("=")[1] : "/";
   const handleSubmit = (values) => {
-    dispatch(login(values.email, values.password));
-    if (userLoginState.userInfo) {
-      navigate("/dashboard", { replace: true });
-    } else {
-      return;
-    }
+    const { email, password } = values;
+    dispatch(login(email, password));
   };
   useEffect(() => {
-    if (userLoginState.userInfo) {
+    if (userInfo) {
       navigate("/dashboard");
     }
-  }, []);
+  }, [userInfo]);
 
   return (
     <div className="accounts-background">
@@ -60,16 +57,14 @@ const Login = () => {
                   <Form className="bg-white rounded p-5">
                     <Input type="email" name="email" label="Email" />
                     <Input type="password" name="password" label="Password" />
-                    {userLoginState.error && (
-                      <p className="text-danger">{userLoginState.error}</p>
-                    )}
+                    {error && <p className="text-danger">{error}</p>}
                     <Button
-                      disabled={userLoginState.loading}
+                      disabled={loading}
                       className="w-100 my-4"
                       variant="primary"
                       type="submit"
                     >
-                      {userLoginState.loading ? "Please wait" : "Submit"}
+                      {loading ? "Please wait" : "Submit"}
                     </Button>
 
                     <p className="text-sm-center text-md-end">

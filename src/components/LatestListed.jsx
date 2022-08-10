@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import getImageUrl from "../functions/getImageUrl";
 // import picture from "../assets/Lagos-City.svg";
 // import { products } from "../assets/products";
 import Loader from "../UI/Loader";

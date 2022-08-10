@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Container, Row, Button } from "react-bootstrap";
 import { Formik, Form, useField, ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/RegisterUserActions";
 import Input from "../UI/Input";
 import { object, string, ref } from "yup";
@@ -26,6 +26,7 @@ const RegisterValidation = object().shape({
 });
 const Signup = () => {
   const dispatch = useDispatch();
+  const registerState = useSelector((state) => state.userRegister);
   const handleSubmit = (values) => {
     console.log(values);
     dispatch(register(values));
@@ -70,8 +71,16 @@ const Signup = () => {
                   />
                   <Input type="tel" name="phone" label="Phone number" />
                 </Row>
+                {registerState.error && (
+                  <div className="text-danger mt-3">
+                    {Object.values(registerState.error).map((e) => (
+                      <p>{e}</p>
+                    ))}
+                  </div>
+                  // <p className="text-danger">{registerState.error.email[0]}</p>
+                )}
                 <Button type="submit" className="mt-4 w-50">
-                  Register
+                  {registerState.loading ? "Loading" : "Register"}
                 </Button>
               </Form>
             );

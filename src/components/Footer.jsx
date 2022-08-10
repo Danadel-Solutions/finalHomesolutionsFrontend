@@ -5,14 +5,14 @@ const Footer = () => {
   return (
     <div className="w-100 footer">
       <div className="w-100 footer-top">
-        <Container className="footer-top-container">
+        {/* <Container className="footer-top-container">
           <p style={{ padding: "10px 0" }}>
             A Developer or an agent? Post your property for FREE{" "}
           </p>
           <Button style={{ maxWidth: "150px" }} className="footer-button">
             CLICK HERE
           </Button>
-        </Container>
+        </Container> */}
       </div>
       <div className="w-100 footer-bottom">
         <Container>

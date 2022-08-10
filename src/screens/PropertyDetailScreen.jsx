@@ -14,6 +14,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Loader from "../UI/Loader";
 import NumberFormat from "react-number-format";
 import axiosInstance from "../api/config";
+import getImageUrl from "../functions/getImageUrl";
 
 const PropertyDetailScreen = () => {
   const { id } = useParams();

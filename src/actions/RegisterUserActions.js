@@ -3,17 +3,17 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
 } from "../constants/registerUserConstants";
-import axios from "axios";
+import axiosInstance from "../api/config";
 
 export const register = (userObj) => async (dispatch) => {
+  dispatch({ type: USER_REGISTER_REQUEST });
   try {
-    dispatch({ type: USER_REGISTER_REQUEST });
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.post(
+    const response = await axiosInstance.post(
       "/users/registration/",
       {
         email: userObj.email,
@@ -23,15 +23,21 @@ export const register = (userObj) => async (dispatch) => {
         middle_name: userObj.middleName,
         last_name: userObj.lastName,
         phone_number: userObj.phone,
+        date_joined: new Date(),
       },
       config
     );
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+    dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data });
   } catch (e) {
     if (e.response) {
       dispatch({
         type: USER_REGISTER_FAIL,
-        payload: e.response.data.non_field_errors[0],
+        payload: e.response.data,
+      });
+    } else {
+      dispatch({
+        type: USER_REGISTER_FAIL,
+        payload: e.message,
       });
     }
   }
