@@ -1,5 +1,8 @@
 import axios from "axios";
+<<<<<<< HEAD
 import axiosInstance from "../api/config";
+=======
+>>>>>>> master
 const registerUser = ({
   email,
   password,
@@ -15,7 +18,11 @@ const registerUser = ({
     },
   };
   try {
+<<<<<<< HEAD
     const { data } = axiosInstance.post(
+=======
+    const { data } = axios.post(
+>>>>>>> master
       "/users/registration",
       {
         email: email,

@@ -81,13 +81,13 @@ const PropertyDetailScreen = () => {
                   src={property.cover_photo}
                 />
                 <Row>
-                  <Col className="border p-3">Toilet</Col>
-                  <Col className="border p-3">Bedroom</Col>
-                  <Col className="border p-3">Bathrooms</Col>
+                  <Col className="border p-3"> {property.toilet_count} Toilet</Col>
+                  <Col className="border p-3"> {property.bedroom_count} Bedroom</Col>
+                  <Col className="border p-3"> {property.bathroom_count} Bathrooms</Col>
                 </Row>
                 <div>
                   <p>Interested in Property?</p>
-                  <p>Call 09015575260</p>
+                  <p>Call 08168946887</p>
                 </div>
               </Col>
               <Col>
