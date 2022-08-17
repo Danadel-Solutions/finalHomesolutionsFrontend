@@ -10,6 +10,7 @@ import Profile from "./screens/Profile";
 import AddPropertyForm from "./screens/AddPropertyForm";
 import Footer from "./components/Footer";
 import SearchResults from "./screens/SearchResults";
+import VerifyEmail from "./screens/VerifyEmail";
 
 function App() {
   const userInfo = useSelector((state) => state.userLogin.userInfo);
@@ -21,9 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/properties/:id" element={<PropertyDetailScreen />} />
-          <Route path={"/login"} element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/search-results" element={<SearchResults />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route
             path="/dashboard"
             element={

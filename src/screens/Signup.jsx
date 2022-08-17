@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Container, Row, Button } from "react-bootstrap";
 import { Formik, Form, useField, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../actions/RegisterUserActions";
 import Input from "../UI/Input";
 import { object, string, ref } from "yup";
@@ -25,12 +26,22 @@ const RegisterValidation = object().shape({
     .required("Phone number is required"),
 });
 const Signup = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const registerState = useSelector((state) => state.userRegister);
   const handleSubmit = (values) => {
     console.log(values);
     dispatch(register(values));
+    if (registerState.registeredUserInfo) {
+      console.log("registered" + registerState.registeredUserInfo);
+      // navigate("/verify-email");
+    }
   };
+  // useEffect(() => {
+  //   if (registerState.registeredUserInfo) {
+  //     navigate("/verify-email");
+  //   }
+  // }, [registerState]);
   return (
     <div className="accounts-background">
       <Helmet>
@@ -77,7 +88,7 @@ const Signup = () => {
                       <p>{e}</p>
                     ))}
                   </div>
-                  // <p className="text-danger">{registerState.error.email[0]}</p>
+                  // <p Afomurueze className="text-danger">2111229015{registerState.error.email[0]}</p>
                 )}
                 <Button type="submit" className="mt-4 w-50">
                   {registerState.loading ? "Loading" : "Register"}
